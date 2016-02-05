@@ -260,12 +260,15 @@ validate(){
   done
 }
 
+#
+# main function
+#
+
 download_sequence_from_dra(){
   local query_id=${1}
   local output_directory_path=${2}
   
   echo "=> Start downloading data for ${query_id} `date`"
-  output_directory=`set_output_directory "${output_directory_path}" "${query_id}"`
 
   # Verify connection to DRA node
   echo "=> Verifying connection to DRA.."
@@ -279,6 +282,9 @@ download_sequence_from_dra(){
   # Get filepath to available sequence data
   echo "=> Looking for file location.."
   fpath=`get_filepath "${experiment_id}"`
+  
+  # Setup output directory, exit if already exists
+  output_directory=`set_output_directory "${output_directory_path}" "${query_id}"`
 
   # Get data via ftp
   echo "=> Downloading data.."
