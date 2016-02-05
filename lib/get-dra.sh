@@ -260,6 +260,37 @@ validate(){
   done
 }
 
+download_sequence_from_dra(){
+  local query_id=${1}
+  local output_directory_path=${2}
+  
+  echo "=> Start downloading data for ${query_id} `date`"
+  output_directory=`set_output_directory "${output_directory_path}" "${query_id}"`
+
+  # Verify connection to DRA node
+  echo "=> Verifying connection to DRA.."
+  connect_dra
+
+  # Get Experiment ID, Run ID, Submission ID from Accessions table
+  echo "=> Converting IDs.."
+  experiment_id=`get_experiment_id "${query_id}"`
+  submission_id=`get_submission_id "${experiment_id}"`
+
+  # Get filepath to available sequence data
+  echo "=> Looking for file location.."
+  fpath=`get_filepath "${experiment_id}"`
+
+  # Get data via ftp
+  echo "=> Downloading data.."
+  retrieve "${experiment_id}" "${fpath}" "${output_directory}"
+
+  # Validate data
+  echo "=> Varidating downloaded data.."
+  validate "${output_directory}"
+
+  echo "=> Finished downloading data for ${query_id} `date`"
+}
+
 #
 # variables
 #
@@ -269,28 +300,5 @@ output_directory_path=${2}
 #
 # execute
 #
-echo "=> Start downloading data for ${query_id} `date`"
-output_directory=`set_output_directory "${output_directory_path}" "${query_id}"`
+download_sequence_from_dra "${query_id}" "${output_directory_path}"
 
-# Verify connection to DRA node
-echo "=> Verifying connection to DRA.."
-connect_dra
-
-# Get Experiment ID, Run ID, Submission ID from Accessions table
-echo "=> Converting IDs.."
-experiment_id=`get_experiment_id "${query_id}"`
-submission_id=`get_submission_id "${experiment_id}"`
-
-# Get filepath to available sequence data
-echo "=> Looking for file location.."
-fpath=`get_filepath "${experiment_id}"`
-
-# Get data via ftp
-echo "=> Downloading data.."
-retrieve "${experiment_id}" "${fpath}" "${output_directory}"
-
-# Validate data
-echo "=> Varidating downloaded data.."
-validate "${output_directory}"
-
-echo "=> Finished downloading data for ${query_id} `date`"

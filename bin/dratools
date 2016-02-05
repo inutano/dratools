@@ -1,0 +1,33 @@
+#!/bin/bash
+#
+# dratools ver 0.0.1
+#  copyright Tazro Inutano Ohta, inutano@gmail.com
+#
+set -eu
+
+source "../lib/get-dra.sh"
+
+#
+# Functions
+#
+help_message(){
+  echo "dratools ver 0.0.1"
+}
+
+#
+# Command line arguments
+#
+cmd=${1}
+
+case "${cmd}" in
+  "download" )
+    local query_id=${2}
+    local output_directory_path=${3}
+    download_sequence_from_dra "${query_id}" "${output_directory_path}"
+    ;;
+  * )
+    help_message
+    ;;
+esac
+
+
