@@ -11,7 +11,13 @@ source "../lib/get-dra.sh"
 # Functions
 #
 help_message(){
-  echo "dratools ver 0.0.1"
+  echo "Program: dratools, command line interface for accessing DRA data"
+  echo "Version: 0.0.1"
+  echo ""
+  echo "Usage:   dratools <command> [options]"
+  echo ""
+  echo "Command: download  download read data in fastq or sra file format"
+  echo ""
 }
 
 #
