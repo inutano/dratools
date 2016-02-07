@@ -5,7 +5,8 @@
 #
 set -eu
 
-source "../lib/get-dra.sh"
+DRATOOLS_BASE="~/.dra"
+source "${DRATOOLS_BASE}/lib/get-dra.sh"
 
 #
 # Functions
