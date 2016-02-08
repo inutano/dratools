@@ -37,7 +37,7 @@ done
 
 # set default target dir
 if [[ -z "${TARGET_DIR}" ]]; then
-  TARGET_DIR="~/.dra"
+  TARGET_DIR="${HOME}/.dra"
 fi
 
 # target direcotry should not exist
