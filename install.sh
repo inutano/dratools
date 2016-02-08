@@ -13,6 +13,11 @@ if [ -z `which git` ]; then
 fi
 
 #
+# set empty variables for command line option
+#
+TARGET_DIR=
+
+#
 # parse command line option
 #
 while [[ $# > 1 ]]; do
