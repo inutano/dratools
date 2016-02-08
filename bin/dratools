@@ -3,9 +3,10 @@
 # dratools ver 0.0.1
 #  copyright Tazro Inutano Ohta, inutano@gmail.com
 #
-set -eu
+set -u
 
 DRATOOLS_BASE="~/.dra"
+source "${DRATOOLS_BASE}/lib/errortrapper.sh"
 source "${DRATOOLS_BASE}/lib/get-dra.sh"
 
 #
@@ -36,5 +37,3 @@ case "${cmd}" in
     help_message
     ;;
 esac
-
-
