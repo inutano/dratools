@@ -8,7 +8,7 @@ set -eu
 # check dependencies
 #
 if [ -z `which git` ]; then
-  echo "Error: You need to install git before installing dratools"
+  echo "Error: You need git to install dratools."
   exit 1
 fi
 
