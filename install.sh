@@ -26,13 +26,22 @@ while [[ $# > 1 ]]; do
   shift
 done
 
-
 #
 # fetch repository from github
 #
+
+# set default target dir
 if [[ -z "${TARGET_DIR}" ]]; then
   TARGET_DIR="~/.dra"
 fi
+
+# target direcotry should not exist
+if [[ -e "${TARGET_DIR}" ]]; then
+  echo "Error: File already exists: ${TARGET_DIR}"
+  exit 1
+fi
+
+# fetch repository
 git clone https://github.com/inutano/dratools "${TARGET_DIR}"
 
 #
